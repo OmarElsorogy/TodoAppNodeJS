@@ -1,0 +1,106 @@
+//-1- Startup Code
+// just install express, ejs, and body-parser.
+
+======================================================
+//-2- creating files
+//step 1: 
+//app.js file
+var express = require('express');
+
+var app = express();
+
+//set up template engine
+app.set('view engine', 'ejs');
+
+//static files
+app.use(express.static('./public'));
+
+//listen to port
+app.listen(3000);
+console.log('You are listening to port 3000');
+-----------------------------------------------
+//step 2:
+/* 
+- split the code up into logical modules.
+- MVC structure: Modules, Views, and Controllers.
+- Modules	: the data:- 			TODOS, USERS and so on.
+- Views		: Templates files:- 		(EJS) TODO.EJS, ACCOUNT.EJS and so on.
+- controllers   : controls the app sections:-  	todoController, userController and so on.
+-----------------------------------------------
+//app.js file
+var express = require('express');
+var todoController = require('./controllers/todoController');
+
+var app = express();
+
+//set up template engine
+app.set('view engine', 'ejs');
+
+//static files
+app.use(express.static('./public'));
+
+//fire controllers
+todoController(app);
+
+//listen to port
+app.listen(3000);
+console.log('You are listening to port 3000');
+-----------------------------------------------
+//todoController.js file
+module.exports = function(app) {
+
+    app.get('/todo', function (req, res) {
+        
+    });
+
+    app.post('/todo', function (req, res) {
+
+    });
+
+    app.delete('/todo', function (req, res) {
+
+    });
+
+}
+
+======================================================
+//-3- Create todo page
+//todo.ejs file
+<html>
+<head>
+    <title>Todo List</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="/assets/styles.css" type="text/css">
+</head>
+<body>
+    <h1>My Todo List</h1>
+    <div id="todo-table">
+        <form>
+            <input type="text" name="item" placeholder="Add new item..." required />
+            <button tupe="submit">Add Item</button>
+        </form>
+        <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+        </ul>
+    </div>
+</body>
+</html> 
+------------------------------------
+//todoController.js file
+ app.get('/todo', function (req, res) {
+        res.render('todo');
+    });
+
+======================================================
+
+
+
+
+
+
+
+
+
+
